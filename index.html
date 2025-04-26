@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *:not(input):not(textarea):not([contenteditable="true"]) {
+        caret-color: transparent !important;
+      }
+
+      input,
+      textarea,
+      [contenteditable="true"] {
+        caret-color: auto;
+        outline: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: border 0.2s ease;
+      }
+      body {
+        background: radial-gradient(circle, #ffeef2, #fcb4c9);
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+      .box {
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .calculator {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .calculator input[type="button"] {
+        padding: 20px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        background-color: #fddde6;
+        transition: 0.2s;
+      }
+      .calculator input[type="button"]:hover {
+        background-color: #fcb4c9;
+      }
+      .display {
+        grid-column: span 3;
+        padding: 10px;
+        font-size: 1.5rem;
+        border: 2px solid #fcb4c9;
+        border-radius: 50px;
+        margin-bottom: 10px;
+        text-align: right;
+        letter-spacing: 5px;
+      }
+      .cute-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px solid #fcb4c9;
+        padding: 5px;
+        background: linear-gradient(135deg, #ffe0ec, #ffd6e0);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container d-flex justify-content-center align-items-center min-vh-100"
+    >
+      <div class="row box p-4 w-100" style="max-width: 700px">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <img
+            src="assets/WhatsApp Image 2025-04-25 at 21.06.03_d637c2dc - Copy hytam.jpg"
+            class="cute-image"
+            alt="Cute Image"
+          />
+        </div>
+        <div class="col-md-6">
+          <div class="calculator">
+            <input type="text" id="display" class="display" disabled />
+            <input type="button" value="1" onclick="appendNumber('1')" />
+            <input type="button" value="2" onclick="appendNumber('2')" />
+            <input type="button" value="3" onclick="appendNumber('3')" />
+            <input type="button" value="4" onclick="appendNumber('4')" />
+            <input type="button" value="5" onclick="appendNumber('5')" />
+            <input type="button" value="6" onclick="appendNumber('6')" />
+            <input type="button" value="7" onclick="appendNumber('7')" />
+            <input type="button" value="8" onclick="appendNumber('8')" />
+            <input type="button" value="9" onclick="appendNumber('9')" />
+            <input type="button" value="#" onclick="appendNumber('#')" />
+            <input type="button" value="0" onclick="appendNumber('0')" />
+            <input type="button" value="C" onclick="clearDisplay()" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio id="clickSound" src="assets/dry-fart.mp3"></audio>
+
+    <script>
+      let display = document.getElementById("display");
+      let actualValue = "";
+      const clickSound = document.getElementById("clickSound");
+
+      function appendNumber(num) {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        if (actualValue.length >= 6) return;
+        if (!/\d/.test(num)) return;
+
+        actualValue += num;
+        display.value += "♥︎";
+
+        if (actualValue.length === 6) {
+          if (actualValue === "110124") {
+            window.location.href = "halaman2.html";
+          } else {
+            alert("Ups! Coba lagi yaa 💖");
+            clearDisplay();
+          }
+        }
+      }
+
+      function clearDisplay() {
+        actualValue = "";
+        display.value = "";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Foto</title>
+  <audio id="pageSound" src="assets/Can't Help Falling In Love.mp3"></audio>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    *:not(input):not(textarea):not([contenteditable="true"]) {
+        caret-color: transparent !important;
+      }
+
+      input,
+      textarea,
+      [contenteditable="true"] {
+        caret-color: auto;
+        outline: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: border 0.2s ease;
+      }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fcb4c9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    body, html {
+      max-height: 100%;
+    }
+    
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container,
+    #startScreen {
+      text-align: center;
+      padding: 50px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #startScreen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .start-button {
+      cursor: pointer;
+      width: 100px; 
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .start-button:hover {
+      transform: scale(1.1);
+    }
+
+    .container {
+      max-width: 900px;
+      width: 50%;
+      margin-top: 40px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 28px;
+      margin-bottom: 35px;
+      color: #ff7b9c;
+    }
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .photo-gallery img {
+      width: 100%;
+      height: auto;
+      border: 3px solid #ffc0cb;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .button-wrapper {
+  display: none; /* Supaya tidak muncul di awal */
+  margin: 20px;
+  justify-content: center;
+}
+
+    .back-button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #ffdbe577;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #ff93b2;
+      color: white;
+    }
+
+    #backButtonWrapper {
+      display: none;
+      margin-top: 30px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+    <!-- Halaman awal: tombol masuk -->
+    <div id="startScreen">
+        <img
+          src="assets/camera.png"
+          alt="Start"
+          class="start-button"
+          onclick="startPage()"
+        />
+    </div>
+
+  <div class="container">
+    <h1>Kenangan Kita</h1>
+
+    <div class="photo-gallery">
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.45.jpeg" alt="Foto 1" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.38.jpeg" alt="Foto 2" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.39 (1).jpeg" alt="Foto 3" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.39 (2).jpeg" alt="Foto 4" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.39.jpeg" alt="Foto 5" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.40 (1).jpeg" alt="Foto 6" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.40 (2).jpeg" alt="Foto 7" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.40.jpeg" alt="Foto 8" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.41.jpeg" alt="Foto 9" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.42 (1).jpeg" alt="Foto 10" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.42.jpeg" alt="Foto 11" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.43.jpeg" alt="Foto 12" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.46.jpeg" alt="Foto 13" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.47.jpeg" alt="Foto 14" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 09.59.48 (1).jpeg" alt="Foto 15" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 10.06.38.jpeg" alt="Foto 16" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 10.34.48.jpeg" alt="Foto 17" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-26 at 10.06.39.jpeg" alt="Foto 18" onclick="openModal(this)" />
+      <img src="assets/WhatsApp Image 2025-04-25 at 21.06.03_d637c2dc.jpg" alt="Foto 19" onclick="openModal(this)" />
+      <img src="assets/Screenshot 2023-12-12 170305.png" alt="Foto 20" onclick="openModal(this)" />
+    </div>
+  </div>
+
+  <div class="button-wrapper" style="display: none;">
+    <button class="back-button" onclick="goBack()">Kembali</button>
+  </div>
+  
+  
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage" />
+  </div>
+
+  <script>
+
+    function startPage() {
+        
+    document.querySelector(".button-wrapper").style.display = "flex"; // ⬅️ INI WAJIB ADA
+
+      const audio = document.getElementById("pageSound");
+      audio.volume = 1;
+      audio.play().catch((error) => {
+        console.log("Gagal memutar audio:", error);
+      });
+
+      document.getElementById("startScreen").style.display = "none";
+      document.querySelector(".container").style.display = "block";
+
+      // Tampilkan tombol kembali
+      document.getElementById("backButtonWrapper").style.display = "flex";
+
+      typeWriter();
+    }
+
+    function goBack() {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        window.location.href = "index.html"; // fallback
+      }
+    }
+
+    // Modal Functions
+    function openModal(img) {
+      const modal = document.getElementById("myModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImg.src = img.src;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

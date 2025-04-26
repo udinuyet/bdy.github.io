@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Selanjutnya</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+   /* Reset default margin dan padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Menempatkan container di tengah layar baik secara horizontal maupun vertikal */
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: #fcb4c9;;
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *:not(input):not(textarea):not([contenteditable="true"]) {
+        caret-color: transparent !important;
+      }
+
+      input,
+      textarea,
+      [contenteditable="true"] {
+        caret-color: auto;
+        outline: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: border 0.2s ease;
+      }
+
+/* Container untuk seluruh halaman */
+.container {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header box dengan tulisan dan logo */
+.header {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.header p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fcb4c9;;
+}
+
+/* Container untuk 4 ikon */
+.icons {
+  display: flex;
+  justify-content: center; /* Menyusun ikon di tengah */
+  gap: 10px; /* Mengurangi jarak antar icon */
+  margin-top: 20px;
+}
+
+/* Box bundar untuk tiap ikon */
+.icon-box {
+  background-color: #fcb4c9;;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60px; /* Ukuran box lebih kecil agar rapat */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Gaya icon di dalam box */
+.icon {
+  font-size: 24px; /* Ukuran icon lebih kecil */
+  color: #333; /* Warna icon */
+}
+
+/* Efek hover pada icon box */
+.icon-box:hover {
+  transform: scale(1.1);
+}
+
+/* Responsif: Menyesuaikan ukuran layar kecil */
+@media (max-width: 600px) {
+  .icon-box {
+    width: 50px; /* Ukuran lebih kecil di perangkat mobile */
+    height: 50px;
+  }
+  
+  .icon {
+    font-size: 20px; /* Ukuran icon lebih kecil di perangkat mobile */
+  }
+}
+
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan tulisan dan logo -->
+        <div class="header">
+          <p>RECAP DIKIT YUK SAYANG!</p>
+        </div>
+    
+        <!-- 4 Icon dalam Box Bundar -->
+        <div class="icons">
+          <div class="icon-box" onclick="window.location.href='ucapan.html'">
+            <i class="fas fa-comment-dots icon"></i>
+          </div>
+          
+          <div class="icon-box" onclick="window.location.href='foto.html'">
+            <i class="fas fa-camera icon"></i> <!-- Icon Kamera -->
+          </div>
+          <!-- <div class="icon-box">
+            <i class="fas fa-user icon"></i> 
+          </div> -->
+          <div class="icon-box" onclick="window.location.href='waktu.html'">
+            <i class="fas fa-clock icon"></i> <!-- Icon Waktu -->
+          </div>
+        </div>
+      </div>
+</body>
+</html>

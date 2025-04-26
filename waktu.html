@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Time Together 💖</title>
+  <audio id="pageSound" src="assets/I Think They Call This Love (Cover).mp3"></audio>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    *:not(input):not(textarea):not([contenteditable="true"]) {
+      caret-color: transparent !important;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fcb4c9;
+    }
+
+    #startScreen {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .start-button {
+      cursor: pointer;
+      width: 120px;
+      transition: transform 0.3s ease;
+    }
+
+    .start-button:hover {
+      transform: scale(1.1);
+    }
+
+    .wrapper {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 40px 60px;
+      gap: 50px;
+      max-width: 1000px;
+      width: 95%;
+      flex-wrap: wrap;
+    }
+
+    .photo-box {
+      width: 280px;
+      height: 280px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .timer-box {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+      padding: 20px 30px;
+      border-radius: 15px;
+      background-color: #ffe0ec;
+    }
+
+    .timer-box h1 {
+      font-size: 1.6rem;
+      color: #ff93b2;
+      margin-bottom: 15px;
+    }
+
+    .time {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #333;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .time span {
+      white-space: nowrap;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #ffdbe577;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      border: 3px solid #fff;
+      cursor: pointer;
+      transition: 0.3s;
+      display: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #ff93b2;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .photo-box {
+        width: 200px;
+        height: 200px;
+      }
+
+      .timer-box h1 {
+        font-size: 1.3rem;
+      }
+
+      .time {
+        font-size: 1.4rem;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Halaman awal -->
+  <div id="startScreen">
+    <img src="assets/cute.png" alt="Start" class="start-button" onclick="startPage()" />
+  </div>
+
+  <!-- Konten utama -->
+  <div class="wrapper">
+    <div class="container">
+      <div class="photo-box">
+        <img src="assets/WhatsApp Image 2025-04-26 at 09.59.40.jpeg" alt="Us Together">
+      </div>
+      <div class="timer-box">
+        <h1>We've been together for</h1>
+        <div class="time" id="loveTimer">Loading...</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="history.back()">Kembali</button>
+  </div>
+
+  <script>
+    function startPage() {
+      const audio = document.getElementById("pageSound");
+      audio.volume = 1;
+      audio.play().catch((error) => {
+        console.log("Gagal memutar audio:", error);
+      });
+
+      document.getElementById("startScreen").style.display = "none";
+      document.querySelector(".wrapper").style.display = "flex";
+      document.querySelector(".back-btn").style.display = "inline-block";
+    }
+
+    const startDate = new Date("January 11, 2024 00:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = now - startDate;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("loveTimer").innerHTML = `
+        <span>${days} days</span>
+        <span>${hours} hrs</span>
+        <span>${minutes} mins</span>
+        <span>${seconds} secs</span>
+      `;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
